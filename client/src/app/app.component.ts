@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { IProduct } from './models/product';
-import { IPagination } from './models/pagination';
+import { BasketService } from './basket/basket.service';
+import { AccountService } from './account/account.service';
 
 @Component({
   selector: 'app-root',
@@ -10,18 +9,40 @@ import { IPagination } from './models/pagination';
 })
 export class AppComponent implements OnInit {
   title = 'Web Ban Giay';
-  products: IProduct[];
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private basketService: BasketService,
+    private accountService: AccountService
+  ) {}
 
   ngOnInit(): void {
-    this.http.get('https://localhost:5001/api/products?pageSize=50').subscribe(
-      (response: IPagination) => {
-        this.products = response.data;
+    this.loadBasket();
+    this.loadCurrentUser();
+  }
+
+  loadBasket() {
+    const basketId = localStorage.getItem('basket_id');
+    this.basketService.getBasket(basketId).subscribe(
+      () => {
+        console.log('init basket');
       },
       (error) => {
         console.log(error);
       }
     );
+  }
+
+  loadCurrentUser() {
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.accountService.loadCurrentUser(token).subscribe(
+        () => {
+          console.log('loaded user');
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    }
   }
 }

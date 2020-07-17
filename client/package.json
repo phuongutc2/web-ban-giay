@@ -12,6 +12,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~10.0.2",
+    "@angular/cdk": "^10.0.1",
     "@angular/common": "~10.0.2",
     "@angular/compiler": "~10.0.2",
     "@angular/core": "~10.0.2",
@@ -27,6 +28,7 @@
     "ngx-toastr": "^12.1.0",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
+    "uuid": "^8.2.0",
     "xng-breadcrumb": "^5.1.0",
     "zone.js": "~0.10.3"
   },
