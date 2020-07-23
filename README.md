@@ -22,7 +22,7 @@ Lớp:CNTT k58
 3. 
 
 ## Hướng dẫn sử dụng
-- 
+- http://http://52.156.160.232/
 -
 
 Xin cám ơn!
